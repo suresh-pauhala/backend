@@ -7,9 +7,12 @@ import re
 import time
 from flask_cors import CORS
 import openai
-import requests
+from dotenv import load_dotenv
+import os
 
-openai.api_key = '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'
+load_dotenv()
+
+openai.api_key = os.getenv("API_KEY")
 
 @lru_cache()
 def fetch_fanduel(ttl_hash=None):
