@@ -89,7 +89,7 @@ app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 CORS(app)
 
 
-@app.route("/")
+@app.route("/",methods=['GET'])
 def index():
     fanduel = fetch_fanduel(ttl_hash=get_ttl_hash())
     draftkings = fetch_draftkings(ttl_hash=get_ttl_hash())
