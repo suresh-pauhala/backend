@@ -31,7 +31,7 @@ def fetch_betmgm(ttl_hash=None):
 
 def fetch_game_data(sportsbook="fanduel"):
     cmd = ["python", "main.py", "-xgb", f"-odds={sportsbook}"]
-    stdout = subprocess.check_output(cmd, cwd="/").decode()
+    stdout = subprocess.check_output(cmd).decode()
     data_re = re.compile(r'\n(?P<home_team>[\w ]+)(\((?P<home_confidence>[\d+\.]+)%\))? vs (?P<away_team>[\w ]+)(\((?P<away_confidence>[\d+\.]+)%\))?: (?P<ou_pick>OVER|UNDER) (?P<ou_value>[\d+\.]+) (\((?P<ou_confidence>[\d+\.]+)%\))?', re.MULTILINE)
     ev_re = re.compile(r'(?P<team>[\w ]+) EV: (?P<ev>[-\d+\.]+)', re.MULTILINE)
     odds_re = re.compile(r'(?P<away_team>[\w ]+) \((?P<away_team_odds>-?\d+)\) @ (?P<home_team>[\w ]+) \((?P<home_team_odds>-?\d+)\)', re.MULTILINE)
